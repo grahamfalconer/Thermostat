@@ -29,9 +29,32 @@ describe('Thermostat', function() {
 
   it('Can turn powerSavingMode on', function() {
     thermostat.powerSavingModeOn()
-    expect(thermostat.powerSavingMode).toBe(true);
+    expect(thermostat._powerSavingMode).toBe(true);
+  })
+
+  it('Cannot exceed 25 on powerSavingMode', function() {
+    thermostat.powerSavingModeOn()
+    for(var i = 0; i < 6; i++) {
+      thermostat.up()
+    }
+    expect(thermostat.temp()).toEqual(25)
+  })
+
+  it('Can turn powerSavingMode off', function () {
+    thermostat.powerSavingModeOff()
+    expect(thermostat._powerSavingMode).toEqual(false)
+
+  })
+
+  it('Cannot exceed 32 if powerSavingMode is off', function() {
+    thermostat.powerSavingModeOff()
+    for(var i = 0; i < 13; i++) {
+      thermostat.up()
+    }
+    expect(thermostat.temp()).toEqual(32)
   })
 });
+
 
 
 
