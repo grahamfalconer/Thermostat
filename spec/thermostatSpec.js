@@ -53,6 +53,24 @@ describe('Thermostat', function() {
     }
     expect(thermostat.temp()).toEqual(32)
   })
+
+  it('Has an energy usage of of medium', function() {
+    expect(thermostat.getUsage()).toEqual('Medium')
+  })
+
+  it('can show low energy usage', function() {
+    for(var i = 3; i > 0; i--) {
+      thermostat.down()
+    }
+    expect(thermostat.getUsage()).toEqual('Low')
+  })
+
+  it('can show high energy usage', function() {
+    for(var i = 6; i > 0; i--) {
+      thermostat.up()
+    }
+    expect(thermostat.getUsage()).toEqual('High')
+  })
 });
 
 

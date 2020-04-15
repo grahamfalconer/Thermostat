@@ -34,7 +34,15 @@ Thermostat.prototype.powerSavingModeOff = function() {
   this._powerSavingMode = false
 }
 
-
+Thermostat.prototype.getUsage = function() {
+  console.log(this._temperature)
+  if(this._temperature < 18) {
+    return "Low"
+  } else if(this._temperature < 25) {
+    return "Medium"
+  } else
+    return "High"
+}
 
 //make a variable for thermostat called power saving mode
 //set that to false
